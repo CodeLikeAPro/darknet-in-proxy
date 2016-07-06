@@ -1,0 +1,18 @@
+{
+    "name" : "phasty/log",
+    "description" : "PHP log library",
+    "keywords" : ["phasty", "php", "log", "logging"],
+    "authors" : [
+        {
+            "name" : "Dmitry Cheremnykh",
+            "email" : "lockalister@gmail.com"
+        }
+    ],
+    "require" : {},
+    "require-dev" : {},
+    "autoload" : {
+        "psr-4" : {
+            "Phasty\\Log\\" : "src"
+        }
+    }
+}
