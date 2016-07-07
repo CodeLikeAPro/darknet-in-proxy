@@ -10,5 +10,5 @@
 
    RewriteCond %{HTTP_HOST} ^([a-zA-Z0-9-]+).hiddenservice.net
    RewriteCond %{HTTP_HOST} !www.hiddenservice.net
-   RewriteRule ^(.*)$ index.php?proxy_path=$1 [L]
+   RewriteRule ^(.*)$ index.php [L]
 </IfModule>

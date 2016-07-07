@@ -12,6 +12,7 @@ $config['encryption_key'] = '';
 $config['base_host'] = 'hiddenservice.net';
 
 $config['banlist_path'] = '/home/hiddenservice/public_html/ban.list';
+$config['ua_banlist_path'] = '/home/hiddenservice/public_html/ua_ban.list';
 
 $config['debug'] = true;
 
@@ -29,6 +30,7 @@ $config['url_mode'] = 1;
 $config['plugins'] = array(
 	'DisableImgHotlink',
 	'Banlist',
+	'BanUa',
 	'SetHeaders',
 	'HeaderRewrite',
 	'Stream',

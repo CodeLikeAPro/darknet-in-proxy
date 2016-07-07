@@ -7,6 +7,12 @@
 <meta name="globalsign-domain-verification" content="tM9wnDjDl5-GoorNGlJ6ttTLJkLqimRRYxcPnk4KqG" /> 
 <link href="//www.hiddenservice.net/css/bootstrap.min.css" rel="stylesheet">
 
+<style>
+.bubble-content {
+	text-align: center;
+}
+</style>
+
 </head>
 
 <body>
@@ -14,30 +20,51 @@
 
 <div class="container">
 
-	<div class="jumbotron" style="margin-top: 20%;">
+	<div class="jumbotron" style="margin-top: 15%;">
 
+		<?php if(isset($error_msg)){ ?>
+		<div id="error">
+			<p><?php echo $error_msg; ?></p>
+		</div>
+		<?php } ?>
 
-	<?php if(isset($error_msg)){ ?>
-	<div id="error">
-		<p><?php echo $error_msg; ?></p>
-	</div>
-	<?php } ?>
+		<div style="text-align: center;">
 
-	<div style="text-align: center;">
+			<form action="//www.hiddenservice.net/index.php" method="post" style="margin-bottom:0;">
+				<input name="url" type="text" style="width:400px;" autocomplete="off" placeholder="http://" />
+				<input type="submit" value="Go" />
+			</form>
 
-		<form action="//www.hiddenservice.net/index.php" method="post" style="margin-bottom:0;">
-			<input name="url" type="text" style="width:400px;" autocomplete="off" placeholder="http://" />
-			<input type="submit" value="Go" />
-		</form>
-
-		<script type="text/javascript">
-			document.getElementsByName("url")[0].focus();
-		</script>
-
-
-	</div>
+			<script type="text/javascript">
+				document.getElementsByName("url")[0].focus();
+			</script>
+		</div>
 
 	</div>
+
+
+
+	<div class="row" style="margin-top: 8%">
+		<div class="col-md-4 bubble-content">
+			<h3>Access Tor and I2P hidden services</h3>
+			<br /><br />
+			Hiddenservice.net lets you access both <a href="https://www.torproject.org/">Tor</a> and <a href="https://geti2p.net/">I2P</a>
+			hidden services from your browser. Just replace .onion or .i2p with .hiddenservice.net
+		</div>
+		<div class="col-md-4 bubble-content">
+			<h3>Having issues?</h3>
+			<br /><br />
+			Contact <a href="mailto:itsbroke@hiddenservice.net">itsbroke@hiddenservice.net</a>
+		</div>
+		<div class="col-md-4 bubble-content">
+			<h3>Abuse?</h3>
+			<br /><br />
+			Hiddenservice.net does NOT host any content and is not responsible for anything you might
+			find on the Tor or I2P networks. However, we do out best to block access to anythign illegal. If you can access
+			something through this service you feel should be blocked, please contact <a href="mailto:abuse@hiddenservice.net">abuse@hiddenservice.net</a>
+		</div>
+	</div>
+
 
 </div>
 
