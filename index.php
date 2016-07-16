@@ -12,6 +12,9 @@ use Proxy\Config;
 use Proxy\Proxy;
 use Phasty\Log\File as log;
 
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
+use Jaybizzle\CrawlerDetect\Fixtures\Crawlers;
+
 // start the session
 session_start();
 
@@ -21,42 +24,72 @@ Config::load('./config.php');
 // custom config file to be written to by a bash script or something
 Config::load('./custom_config.php');
 
-if(!Config::get('app_key')){
-	die("app_key inside config.php cannot be empty!");
-}
+$CrawlerDetect = new CrawlerDetect();
 
 if(!function_exists('curl_version')){
 	die("cURL extension is not loaded!");
+}
+
+function save_request($response) {
+
+	log::info( "save_request" . var_export($response, true) );
+
+	try {
+        	// Create connection
+        	$conn = new mysqli('127.0.0.1', 'onion_stats', 'st1Nky0n1onS', 'onion_stats');
+
+        	// Check connection
+        	if ($conn->connect_error) {
+                	throw new Exception("Connection failed: " . $conn->connect_error);
+        	}
+
+        	$request = $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . ' ' . $_SERVER['SERVER_PROTOCOL'];
+        	$request = substr($request, 0, 255);
+
+	        $sql = "INSERT INTO requests (source, request, ua, response_code, hostname, referer) VALUES ('" . $_SERVER['REMOTE_ADDR'] . "', '" . $request . "', '" . $_SERVER['HTTP_USER_AGENT'] . "', '" . $response . "', '" . $_SERVER['SERVER_NAME'] . "', '" . substr($_SERVER['HTTP_REFERER'], 0, 255) . "')";
+
+		log::info( $sql );
+
+        	if ($conn->query($sql) !== TRUE) {
+                	throw new Exception("Error: " . $sql . "<br>" . $conn->error);
+        	}
+
+        	$conn->close();
+	} catch(Exception $ex) {
+        	log::info("Exception: " . $ex->getMessage() . ' -- ' . $ex->getFile() . ' : ' . $ex->getLine());
+	}
 }
 
 // very important!!! otherwise requests are queued while waiting for session file to be unlocked
 session_write_close();
 
 if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] == 'www.'.Config::get('base_host') ) {
-	// must be at homepage - should we redirect somewhere else?
-	if(Config::get('index_redirect')) {
-		// redirect to...
-		header("HTTP/1.1 302 Found"); 
-		header("Location: ".Config::get('index_redirect'));
-	} elseif($_POST['url']) {
-		$url = $_POST['url'];
-		if( !preg_match('/http(s?):\/\//i', $url) ) {
-			$url = 'http://' . $_POST['url'];
-		}
-		$proxified_url = proxify_url($url, $url);
-		log::debug('Request from homepage: ' . $url);
-		log::debug('Proxified: ' . $proxified_url);
-		header("HTTP/1.1 302 Found");
+
+	switch( $_SERVER['REQUEST_URI'] ) {
+		case (preg_match('/^\/banlist/', $_SERVER['REQUEST_URI']) ? true : false) :
+			$data = file_get_contents(Config::get('banlist_path'));
+			die( $data );
+        	break;
+		default:
+			if( $_POST['url'] ) {
+				$url = $_POST['url'];
+        		if( !preg_match('/http(s?):\/\//i', $url) ) {
+            		$url = 'http://' . $_POST['url'];
+        		}
+        		$proxified_url = proxify_url($url, $url);
+        		header("HTTP/1.1 302 Found");
                 header("Location: " . $proxified_url);
-	} else {
-		echo render_template("./templates/main.php", array('version' => Proxy::VERSION));
+			} else {
+				echo render_template("./templates/main.php", array('version' => Proxy::VERSION));
+			}
 	}
 
 	exit;
 }
 
 // Disclaimer
-if( !$_COOKIE["disclaimer_accepted"] ) {
+if( !$_COOKIE["disclaimer_accepted"] && !$CrawlerDetect->isCrawler() ) {
+//if( !$_COOKIE["disclaimer_accepted"] ) {
         echo render_template("./templates/disclaimer.php", array());
 	exit;
 }
@@ -92,21 +125,19 @@ foreach(Config::get('plugins', array()) as $plugin){
 	$proxy->getEventDispatcher()->addSubscriber(new $plugin_class());
 }
 
+$response = null;
+
 try {
 
 	// request sent to index.php
 	$request = Request::createFromGlobals();
 
-	log::notice( $url );
-	log::debug( var_export($request->headers, true) );
-
 	// remove all GET parameters such as ?q=
 	$request->get->clear();
 
 	// forward it to some other URL
+	global $response;
 	$response = $proxy->forward($request, $url);
-
-	log::debug( var_export($response->headers, true) );
 
 	// if that was a streaming response, then everything was already sent and script will be killed before it even reaches this line
 	$response->send();
@@ -122,13 +153,19 @@ try {
 		header("HTTP/1.1 302 Found");
 		header("Location: {$url}");
 	} else {
-		log::debug($ex->getMessage() . ' -- ' . $ex->getFile() . ' : ' . $ex->getLine());
+		log::warning( var_export($response, true) );
+		log::warning('Exception: ' . $ex->getMessage());
+		//save_request(  $response->getStatusCode() );
 		echo render_template("./templates/main.php", array(
 			'url' => $url,
 			'error_msg' => $ex->getMessage(),
 			'version' => Proxy::VERSION
 		));
 	}
+
+	//save_request(  $response->getStatusCode() );
 }
+
+save_request(  $response->getStatusCode() );
 
 ?>

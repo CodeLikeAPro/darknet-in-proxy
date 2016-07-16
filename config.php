@@ -39,12 +39,12 @@ $config['plugins'] = array(
 	'Proxify',
 	'UrlForm',
 	// site specific plugins below
-	'Youtube',
-	'DailyMotion',
-	'RedTube',
-	'XHamster',
-	'XVideos',
-	'Twitter'
+	//'Youtube',
+	//'DailyMotion',
+	//'RedTube',
+	//'XHamster',
+	//'XVideos',
+	//'Twitter'
 );
 
 // additional curl options to go with each request
@@ -52,7 +52,7 @@ $config['curl'] = array(
 	// CURLOPT_INTERFACE => '123.123.123.13',
 	// CURLOPT_CONNECTTIMEOUT => 5
 	CURLOPT_PROXYTYPE 	=> CURLPROXY_HTTP,
-   	CURLOPT_PROXY		=> '127.0.0.1:8118',
+   	CURLOPT_PROXY		=> '127.0.0.1:3128',
 	CURLOPT_CONNECTTIMEOUT	=> 0,
 	CURLOPT_TIMEOUT		=> 400
 );

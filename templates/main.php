@@ -5,6 +5,9 @@
 <title>Darknet TOR and I2P In Proxy</title>
 
 <meta name="globalsign-domain-verification" content="tM9wnDjDl5-GoorNGlJ6ttTLJkLqimRRYxcPnk4KqG" /> 
+<meta name="msvalidate.01" content="36F5E6A7A593038359F3D1346F1F732D" />
+<meta name="yandex-verification" content="47b723592fd12aa8" />
+<meta name="description" content="Tor and I2P in proxy. Just like tor2web, access .onion and .i2p domains without running Tor or I2P." />
 <link href="//www.hiddenservice.net/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
@@ -48,13 +51,13 @@
 		<div class="col-md-4 bubble-content">
 			<h3>Access Tor and I2P hidden services</h3>
 			<br /><br />
-			Hiddenservice.net lets you access both <a href="https://www.torproject.org/">Tor</a> and <a href="https://geti2p.net/">I2P</a>
+			Hiddenservice.net lets you access both <a alt="Tor Project: Anonymity Online" href="https://www.torproject.org/">Tor</a> and <a alt="I2P Anonymous Privacy Network" href="https://geti2p.net/">I2P</a>
 			hidden services from your browser. Just replace .onion or .i2p with .hiddenservice.net
 		</div>
 		<div class="col-md-4 bubble-content">
 			<h3>Having issues?</h3>
 			<br /><br />
-			Contact <a href="mailto:itsbroke@hiddenservice.net">itsbroke@hiddenservice.net</a>
+			Find something thats not working right? Contact <a href="mailto:dev@hiddenservice.net">dev@hiddenservice.net</a>
 		</div>
 		<div class="col-md-4 bubble-content">
 			<h3>Abuse?</h3>
@@ -67,6 +70,21 @@
 
 
 </div>
+
+<?php if( !isset($error_msg) ): ?>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-80542395-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<?php endif; ?>
 
 
 </body>

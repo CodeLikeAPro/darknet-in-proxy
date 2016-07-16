@@ -20,6 +20,10 @@ class ComposerStaticInit84651c138dec41305ecc9bbf4bb1c63d
             'Proxy\\' => 6,
             'Phasty\\Log\\' => 11,
         ),
+        'J' => 
+        array (
+            'Jaybizzle\\CrawlerDetect\\' => 24,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -34,6 +38,10 @@ class ComposerStaticInit84651c138dec41305ecc9bbf4bb1c63d
         'Phasty\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/phasty/log/src',
+        ),
+        'Jaybizzle\\CrawlerDetect\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
     );
 

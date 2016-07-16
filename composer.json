@@ -9,7 +9,8 @@
 	"require": {
 		"athlon1600/php-proxy": ">=4.0.2",
 		"phasty/log": ">=0.1",
-		"twbs/bootstrap": "^3.3"
+		"twbs/bootstrap": "^3.3",
+		"jaybizzle/crawler-detect": "1.*"
 	},
 	"scripts": {
 		"post-create-project-cmd": [

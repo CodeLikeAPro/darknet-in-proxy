@@ -151,7 +151,9 @@ class Proxy {
 			
 			// there must have been an error if at this point
 			if(!$result){
-					
+
+				//$this->response->setStatusCode( curl_getinfo ( $ch, CURLINFO_HTTP_CODE ) );
+
 				$error = sprintf('(%d) %s', curl_errno($ch), curl_error($ch));
 			
 				throw new \Exception($error);
