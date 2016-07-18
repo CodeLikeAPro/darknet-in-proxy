@@ -29,7 +29,7 @@
 
 		<p>
           <a class="btn btn-lg btn-primary"" role="button"
-			onClick="document.cookie = 'disclaimer_accepted=1; expires=Thu, 18 Dec 2020 12:00:00 UTC; path=/'; location.reload();" >Continue</a>
+			onClick="document.cookie = 'disclaimer_accepted=1; domain=.<?php echo $base_host; ?>; expires=Thu, 18 Dec 2020 12:00:00 UTC; path=/'; location.reload();" >Continue</a>
         </p>
 	</div>
 </div>

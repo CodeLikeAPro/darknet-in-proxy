@@ -99,7 +99,7 @@ if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] =
 // Disclaimer
 if( !$_COOKIE["disclaimer_accepted"] && !$CrawlerDetect->isCrawler() ) {
 //if( !$_COOKIE["disclaimer_accepted"] ) {
-        echo render_template("./templates/disclaimer.php", array());
+        echo render_template("./templates/disclaimer.php", array('base_host' => Config::get('base_host')));
 	exit;
 }
 
