@@ -63,6 +63,15 @@ function save_request($response) {
 // very important!!! otherwise requests are queued while waiting for session file to be unlocked
 session_write_close();
 
+
+$links = array(
+	'Onion Dir' => '//auutwvpt25zfyncd.' . Config::get('base_host'),
+	'LINKZ Onion Directory' => '//linkzbyg4nwodgic.' . Config::get('base_host'),
+	'Hidden Wiki' => '//zqktlwi4fecvo6ri.' . Config::get('base_host'),
+	'DeepDotWeb' => '//deepdot35wvmeyd5.' . Config::get('base_host'),
+	'Cryptome on Tor' => '//h2am5w5ufhvdifrs.' . Config::get('base_host')
+);
+
 if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] == 'www.'.Config::get('base_host') ) {
 
 	switch( $_SERVER['REQUEST_URI'] ) {
@@ -80,7 +89,7 @@ if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] =
         		header("HTTP/1.1 302 Found");
                 header("Location: " . $proxified_url);
 			} else {
-				echo render_template("./templates/main.php", array('version' => Proxy::VERSION));
+				echo render_template("./templates/main.php", array('version' => Proxy::VERSION, 'links' => $links));
 			}
 	}
 
@@ -94,7 +103,7 @@ if( !$_COOKIE["disclaimer_accepted"] && !$CrawlerDetect->isCrawler() ) {
 	exit;
 }
 
-$request_host = preg_replace('/.hiddenservice.net/i', '', $_SERVER['HTTP_HOST']);
+$request_host = preg_replace('/.' . Config::get('base_host') . '/i', '', $_SERVER['HTTP_HOST']);
 
 if( preg_match('/[a-z2-7]{16}/i', $request_host) ) {
 	$url = 'http://' . $request_host . '.onion' . $_SERVER['REQUEST_URI'];
