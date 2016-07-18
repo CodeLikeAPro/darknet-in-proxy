@@ -69,6 +69,42 @@
 	</div>
 
 
+
+	<div class="panel panel-default" style="margin-top: 50px;">
+  		<div class="panel-body" style="text-align: center;">
+    		<?php
+				$links = array(
+					'Onion Dir' => 'https://auutwvpt25zfyncd.hiddenservice.net',
+					'LINKZ Onion Directory' => 'https://linkzbyg4nwodgic.hiddenservice.net/',
+					'Hidden Wiki' => 'https://zqktlwi4fecvo6ri.hiddenservice.net/wiki/index.php/Main_Page',
+					'DeepDotWeb' => 'https://deepdot35wvmeyd5.hiddenservice.net/',
+					'Cryptome on Tor' => 'https://h2am5w5ufhvdifrs.hiddenservice.net/'
+				);
+				$shuffled_array = array();
+
+				$keys = array_keys($links);
+				shuffle($keys);
+
+				foreach ($keys as $key) {
+					$shuffled_array[$key] = $links[$key];
+				}
+
+				$count = 0;
+				foreach($shuffled_array as $lk => $lv) {
+					if($count < 2) {
+						echo '<a href="' . $lv . '">' . $lk . '</a> &nbsp; &nbsp; | &nbsp; &nbsp; ';
+					} else {
+						echo ' <a href="' . $lv . '">' . $lk . '</a>';
+						break;
+					}
+					$count++;
+				}
+			?>
+  		</div>
+	</div>
+
+
+
 </div>
 
 <?php if( !isset($error_msg) ): ?>

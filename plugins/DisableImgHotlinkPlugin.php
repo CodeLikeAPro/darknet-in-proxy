@@ -16,7 +16,7 @@ class DisableImgHotlinkPlugin extends AbstractPlugin {
 		//log::notice('Referer: ' . $referer);
 		//log::notice('Content-type: ' . $content_type);
 		//log::notice('CT: ' . $_SERVER['HTTP_REFERER']);
-
+		log::notice("Hotlink referer: " . $referer);
 		if( strlen($referer) == 0 || !preg_match('/.hiddenservice.net/', $referer) ) {
 			if( preg_match('/image/', $content_type) ) {
 				log::notice('Image hot link prevented: '. $event['request']->getUri());
