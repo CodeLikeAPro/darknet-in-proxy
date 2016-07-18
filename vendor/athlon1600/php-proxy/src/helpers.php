@@ -166,11 +166,11 @@ function proxify_url($url, $base_url = ''){
 
 		if( preg_match('/.onion/', $base_host) ) {
 			//log::notice("Found .onion");
-			$url = str_replace('.onion', '.hiddenservice.net', $url);
+			$url = str_replace('.onion', '.' . Config::get('base_host'), $url);
 		}
 		if( preg_match('/.i2p/', $base_host) ) {
 			//log::notice("Found .i2p");
-                        $url = str_replace('.i2p', '.hiddenservice.net', $url);
+                        $url = str_replace('.i2p', '.' . Config::get('base_host'), $url);
                 }
 
 		if( preg_match('/^http/i', $url) ) {
