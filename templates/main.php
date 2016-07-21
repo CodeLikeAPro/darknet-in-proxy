@@ -8,6 +8,7 @@
 <meta name="msvalidate.01" content="36F5E6A7A593038359F3D1346F1F732D" />
 <meta name="yandex-verification" content="47b723592fd12aa8" />
 <meta name="description" content="Tor and I2P in proxy. Just like tor2web, access .onion and .i2p domains without running Tor or I2P." />
+<meta name="keywords" content="Tor,I2p,tor browser,proxy,darknet,tor2web,onion.to,onion.cab,onion,eepsite,anonymity,privacy">
 <link href="//www.hiddenservice.net/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
