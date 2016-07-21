@@ -10,9 +10,15 @@
 <meta name="description" content="Tor and I2P in proxy. Just like tor2web, access .onion and .i2p domains without running Tor or I2P." />
 <link href="//www.hiddenservice.net/css/bootstrap.min.css" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+
 <style>
 .bubble-content {
 	text-align: center;
+}
+
+h1 {
+	font-family: 'Fjalla One', sans-serif;
 }
 </style>
 
@@ -21,9 +27,12 @@
 <body>
 
 
-<div class="container">
+<div class="container" style="margin-top: 10%;">
 
-	<div class="jumbotron" style="margin-top: 15%;">
+	<div style="padding-bottom: 2%;">
+		<h1>Tor and I2P Proxy</h1>
+	</div>
+	<div class="jumbotron">
 
 		<?php if(isset($error_msg)){ ?>
 		<div id="error">
