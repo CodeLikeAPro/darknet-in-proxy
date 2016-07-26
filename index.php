@@ -36,7 +36,7 @@ function save_request($response) {
 
 	try {
         	// Create connection
-        	$conn = new mysqli('127.0.0.1', 'onion_stats', 'st1Nky0n1onS', 'onion_stats_dev');
+        	$conn = new mysqli('127.0.0.1', 'onion_stats', 'st1Nky0n1onS', 'onion_stats');
 
         	// Check connection
         	if ($conn->connect_error) {
