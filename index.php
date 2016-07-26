@@ -36,7 +36,7 @@ function save_request($response) {
 
 	try {
         	// Create connection
-        	$conn = new mysqli('127.0.0.1', 'onion_stats', 'st1Nky0n1onS', 'onion_stats');
+        	$conn = new mysqli('127.0.0.1', 'onion_stats', 'st1Nky0n1onS', 'onion_stats_dev');
 
         	// Check connection
         	if ($conn->connect_error) {
@@ -69,7 +69,8 @@ $links = array(
 	'LINKZ Onion Directory' => '//linkzbyg4nwodgic.' . Config::get('base_host'),
 	'Hidden Wiki' => '//zqktlwi4fecvo6ri.' . Config::get('base_host'),
 	'DeepDotWeb' => '//deepdot35wvmeyd5.' . Config::get('base_host'),
-	'Cryptome on Tor' => '//h2am5w5ufhvdifrs.' . Config::get('base_host')
+	'Cryptome on Tor' => '//h2am5w5ufhvdifrs.' . Config::get('base_host'),
+	'I2P Forum' => '//forum.' .  Config::get('base_host')
 );
 
 if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] == 'www.'.Config::get('base_host') ) {
