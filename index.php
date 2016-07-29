@@ -70,7 +70,8 @@ $links = array(
 	'Hidden Wiki' => '//zqktlwi4fecvo6ri.' . Config::get('base_host'),
 	'DeepDotWeb' => '//deepdot35wvmeyd5.' . Config::get('base_host'),
 	'Cryptome on Tor' => '//h2am5w5ufhvdifrs.' . Config::get('base_host'),
-	'I2P Forum' => '//forum.' .  Config::get('base_host')
+	'I2P Forum' => '//forum.' .  Config::get('base_host'),
+	'eepstatus' => '//identiguy.' . Config::get('base_host')
 );
 
 if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] == 'www.'.Config::get('base_host') ) {
