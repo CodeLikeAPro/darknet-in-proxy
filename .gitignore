@@ -1,3 +1,4 @@
+.htaccess
 composer.phar
 config.php
 composer.lock
