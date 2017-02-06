@@ -32,7 +32,7 @@ if(!function_exists('curl_version')){
 
 function save_request($response) {
 
-	log::info( "save_request" . var_export($response, true) );
+	//log::info( "save_request" . var_export($response, true) );
 
 	try {
         	// Create connection
@@ -48,7 +48,7 @@ function save_request($response) {
 
 	        $sql = "INSERT INTO requests (source, request, ua, response_code, hostname, referer) VALUES ('" . $_SERVER['REMOTE_ADDR'] . "', '" . $request . "', '" . $_SERVER['HTTP_USER_AGENT'] . "', '" . $response . "', '" . $_SERVER['SERVER_NAME'] . "', '" . substr($_SERVER['HTTP_REFERER'], 0, 255) . "')";
 
-		log::info( $sql );
+		//log::info( $sql );
 
         	if ($conn->query($sql) !== TRUE) {
                 	throw new Exception("Error: " . $sql . "<br>" . $conn->error);
@@ -79,7 +79,8 @@ if( $_SERVER['HTTP_HOST'] == Config::get('base_host') || $_SERVER['HTTP_HOST'] =
 	switch( $_SERVER['REQUEST_URI'] ) {
 		case (preg_match('/^\/banlist/', $_SERVER['REQUEST_URI']) ? true : false) :
 			$data = file_get_contents(Config::get('banlist_path'));
-			die( $data );
+			//die( $data );
+			die();
         	break;
 		default:
 			if( $_POST['url'] ) {
@@ -164,7 +165,7 @@ try {
 		header("HTTP/1.1 302 Found");
 		header("Location: {$url}");
 	} else {
-		log::warning( var_export($response, true) );
+		//log::warning( var_export($response, true) );
 		log::warning('Exception: ' . $ex->getMessage());
 		//save_request(  $response->getStatusCode() );
 		echo render_template("./templates/main.php", array(

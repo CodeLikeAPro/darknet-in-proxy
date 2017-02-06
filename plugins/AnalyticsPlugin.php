@@ -19,6 +19,8 @@ class AnalyticsPlugin extends AbstractPlugin {
 
 		$output = $response->getContent();
 
+		if( !preg_match('/body/i', $output) ) { return; }
+
 		$analytics_code = render_template("./templates/analytics.php", array());
 
 		// does the html page contain <body> tag, if so insert our form right after <body> tag starts

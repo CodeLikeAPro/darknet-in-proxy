@@ -34,7 +34,7 @@ class HeaderRewritePlugin extends AbstractPlugin {
 		$code = $response->getStatusCode();
 		$text = $response->getStatusText();
 
-		if($code >= 400 && $code <= 600){
+		if($code >= 400 && $code <= 600 && $code != 404){
 			throw new \Exception("Error accessing resource: {$code} - {$text}");
 		}
 		
